@@ -64,8 +64,52 @@ class Index extends CI_Controller {
 		$data	= array();
 		$data['title']	= 'JJSoft || Dashboard';
 		
-		
+		$this->load->view('includes/header',$data);
+		$this->load->view('includes/leftmenu',$data);
 		$this->load->view('dashboard',$data);
-		
+		$this->load->view('includes/footer',$data);
+	}
+	
+	
+	public function allleads(){
+		// Datatables Variables
+		$draw = intval($this->input->get("draw"));
+		$start = intval($this->input->get("start"));
+		$length = intval($this->input->get("length"));
+		$leads = $this->lead_model->get_allleads();
+
+		$data = array();
+
+		foreach($leads->result() as $k=>$r) {
+			$si_no=$k+1;
+			$data[] = array(
+				'<input type="checkbox" class="sub_chk" data-id="'.$r->lead_id.'">',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$si_no.'</a>',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->firstname.' '.$r->lastname.'</a>',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->email.'</a>',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->phone.'</a>',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->address.'</a>',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->squarefoot.'</a>',
+				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.date("d-M-Y h:i:s", strtotime($r->added_date)).'</a>'
+			);
+		}
+
+		$output = array(
+			"draw" => $draw,
+			"recordsTotal" => $leads->num_rows(),
+			"recordsFiltered" => $leads->num_rows(),
+			"data" => $data
+		);
+		echo json_encode($output);
+		exit();
+	}
+	
+	public function deletlead(){
+		$ids	= $this->input->post('ids');
+		$prodcts=explode(",",$ids);
+		foreach($prodcts as $k=>$v){
+			$this->lead_model->deletelead($v);
+		}
+		return true;
 	}
 }
