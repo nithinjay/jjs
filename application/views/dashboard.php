@@ -31,11 +31,8 @@
                 <tr>
 				  <th><input type="checkbox" id="master"></th>
                   <th>SI No.</th>
-                  <th>Name</th>
+                  <th>First name & Last name</th>
                   <th>Email</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                  <th>Home sqft</th>
                   <th>Added Date</th>
                 </tr>
               </thead>
@@ -43,11 +40,8 @@
                 <tr>
 				  <th><input type="checkbox" id="master"></th>
                   <th>SI No.</th>
-                  <th>Name</th>
+                  <th>First name & Last name</th>
                   <th>Email</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                  <th>Home sqft</th>
                   <th>Added Date</th>
                 </tr>
               </tfoot>

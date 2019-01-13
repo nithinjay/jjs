@@ -87,9 +87,6 @@ class Index extends CI_Controller {
 				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$si_no.'</a>',
 				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->firstname.' '.$r->lastname.'</a>',
 				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->email.'</a>',
-				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->phone.'</a>',
-				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->address.'</a>',
-				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.$r->squarefoot.'</a>',
 				'<a style="text-decoration: none; color:black" href="'.base_url('index/details/'.$r->lead_id).'">'.date("d-M-Y h:i:s", strtotime($r->added_date)).'</a>'
 			);
 		}
