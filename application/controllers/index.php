@@ -112,4 +112,34 @@ class Index extends CI_Controller {
 		}
 		return true;
 	}
+	
+	public function details($lead_id){
+		$data=array();
+		$data['title']='JJSoft || Lead Details';
+		
+		$lead_details=$this->lead_model->get_lead($lead_id);
+		
+		$lead_id_db	= $lead_details->lead_id;
+		$firstname	= $lead_details->firstname;
+		$lastname	= $lead_details->lastname;
+		$email		= $lead_details->email;
+		$phone		= $lead_details->phone;
+		$address	= $lead_details->address;
+		$squarefoot	= $lead_details->squarefoot;
+		$added_date	= $lead_details->added_date;
+		
+		$data['lead_id']	= $lead_id;
+		$data['firstname']	= $firstname;
+		$data['lastname']	= $lastname;
+		$data['email']		= $email;
+		$data['phone']		= $phone;
+		$data['address']	= $address;
+		$data['squarefoot']	= $squarefoot;
+		$data['added_date']	= date("d-M-Y h:i:s", strtotime($added_date));
+		
+		$this->load->view('includes/header',$data);
+		$this->load->view('includes/leftmenu',$data);
+		$this->load->view('details',$data);
+		$this->load->view('includes/footer',$data);
+	}
 }
